@@ -1,5 +1,5 @@
 /* Colors */
-/* Theme overides - .box-shadow is deleted */
+/*Theme overides  - .box-shadow is deleted*/
 .km-nova h1,
 .km-nova h2,
 .km-nova h3,
@@ -481,15 +481,14 @@
 /* Links */
 .km-nova .link {
   color: #ff4350;
-  text-decoration: none;
 }
-/* Switch fix */
+/*Switch fix*/
 .km-nova .km-switch-wrapper,
 .km-nova span.km-switch.km-switch-on input[type=checkbox]:checked + span + span {
   border-color: #ff4350;
   background-color: #ff4350;
 }
-/* Active state for drawer navigation */
+/*Active state for drawer navigation*/
 .km-nova #navigation-container .active:before {
   content: "";
   width: 3px;
@@ -506,6 +505,9 @@
   margin-left: 1rem;
   margin-right: 1rem;
 }
+.km-nova .details-content {
+  font-size: 1.2em;
+}
 /* form label position */
 .km-nova .form-content .form-content-item .km-label-hidden input:not(.k-input):not([type='checkbox']):not([type='radio']),
 .km-nova .form-content .form-content-item .km-label-hidden select:not([multiple]) {
@@ -516,17 +518,6 @@
 .km-nova .form-content .form-content-item .km-listview-label.km-label-above {
   width: auto;
 }
-.km-nova div.km-label-above {
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
-.km-nova div.km-label-above.field {
-  padding-top: 0;
-}
-.km-nova .km-label-above .field__content {
-  font-size: 1.2rem;
-  line-height: normal;
-}
 /* custom filter */
 .km-nova .custom-filter input {
   padding: .5em 0 .5em 1.8em;
@@ -534,36 +525,6 @@
 .km-nova .km-filter-wrap:before {
   color: #cacdce;
 }
-.status {
-  display: block;
-  font-style: italic;
-  color: #f44336;
-  text-align: center;
-}
-/* fields specific styles */
-.km-nova .km-list .field.km-label-above,
-.km-nova .km-list .field.km-label-hidden {
-  position: relative;
-}
-.km-nova .km-list .field.km-label-above input[type=text]:not(.k-input),
-.km-nova .km-list .field.km-label-hidden input[type=text]:not(.k-input) {
-  left: 0;
-}
-/* textblock specific styles */
-.km-nova .field--text-block {
-  position: relative;
-  padding: 0;
-  margin: 0;
-}
-.km-nova .textBlock {
-  width: 100%;
-  padding: 0;
-  margin-top: 0.3em;
-  min-width: 6em;
-  color: #32364c;
-  word-wrap: break-word;
-}
-/*Image Gallery field*/
-.km-nova .field--gallery:not(.field--gallery-slider) .field__content .gallery__items:after {
-  background: #dfe1e2;
+#navigation-show-more-view {
+  background-color: #fff;
 }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Aher Book</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!-- <link href="css/kendo.common.min.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="css/kendo.common-bootstrap.min.css" />
+<link href="css/kendo.bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="css/kendo.default.min.css" rel="stylesheet"> -->
+<link href="css/kendo.mobile.nova.min.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/adsSlider.css">
+</head>
+<body class="pagebg">
+<!-- Header && Footer-->
+<div data-role="layout" data-id="app-toolbar">
+    <div data-role="header">
+        <div data-role="navbar">
+            <a href="#panel" data-rel="drawer" data-role="button" data-icon="action" data-align="left">Panel</a>
+            <span data-role="view-title">My View Title</span>
+        </div>         
+    </div>
+    
+    <footer data-role="footer">
+        <div data-role="tabstrip">
+            <a data-icon="globe" href="#page1">Page 1</a>
+            <a data-icon="organize" href="#page2">Page 2</a>
+            <a data-icon="contacts" href="#page3">Page 3</a>
+        </div>
+    </footer>
+</div>
+
+<!-- Page 1 -->
+<div data-role="view" id="page1" data-transition="slide:left" data-layout="app-toolbar" data-title="Page 1 header">
+    <img src="http://www.winnipeghumanesociety.ca/images/cute-puppy.jpg" title="Some picture" width="100%" height="auto"/>
+    <!-- <ul data-role="listview" data-style="inset">
+        <li><a href="#page2" href="#foo">Slide to page 2</a></li>
+        <li>Bar</li>
+    </ul>  -->   
+</div>
+<!-- Page 2 -->
+<!-- <div data-role="view" id="page2" data-transition="slide:left reverse" data-layout="app-toolbar" data-title="Page 2 header">
+    <a href="#page1" data-role="button">Slide back to page 1</a>
+</div> -->
+<!-- Page 3 -->
+<!-- <div data-role="view" id="page3" data-transition="slide:left reverse" data-layout="app-toolbar" data-title="Page 3 header">
+    <a href="#page1" data-role="button">Slide back to page 1</a>
+</div> -->
+
+<!-- Sliding  panel -->
+<div data-role="drawer" id="panel">
+    Panel
+</div>	
+
+
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/kendo.all.min.js"></script>
+<script src="js/modernizr.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+
+var app = new kendo.mobile.Application($(document.body), { skin: 'flat' });
+			
+</script>
+</body>
+</html>
+
