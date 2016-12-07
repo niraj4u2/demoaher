@@ -2,20 +2,7 @@
 
 (function() {
     var app = {
-        data: {},
-        localization: {
-            defaultCulture: 'en',
-            cultures: [{
-                name: "English",
-                code: "en"
-            }]
-        },
-        navigation: {
-            viewModel: kendo.observable()
-        },
-        showMore: {
-            viewModel: kendo.observable()
-        }
+        data: {}
     };
 
     var bootstrap = function() {
@@ -25,37 +12,7 @@
                 skin: 'nova',
                 initial: 'components/home/view.html'
             });
-
-            kendo.bind($('.navigation-link-text'), app.navigation.viewModel);
         });
-    };
-
-    $(document).ready(function() {
-
-        var navigationShowMoreView = $('#navigation-show-more-view').find('ul'),
-            allItems = $('#navigation-container-more').find('a'),
-            navigationShowMoreContent = '';
-
-            allItems.each(function(index) {
-                navigationShowMoreContent += '<li>' + allItems[index].outerHTML + '</li>';
-            });
-
-             navigationShowMoreView.html(navigationShowMoreContent);
-        kendo.bind($('#navigation-show-more-view'), app.showMore.viewModel);
-
-        app.notification = $("#notify");
-
-    });
-
-    app.listViewClick = function _listViewClick(item) {
-        var tabstrip = app.mobileApp.view().footer.find('.km-tabstrip').data('kendoMobileTabStrip');
-        tabstrip.clear();
-    };
-
-    app.showNotification = function(message, time) {
-        var autoHideAfter = time ? time : 3000;
-        app.notification.find('.notify-pop-up__content').html(message);
-        app.notification.fadeIn("slow").delay(autoHideAfter).fadeOut("slow");
     };
 
     if (window.cordova) {
@@ -97,114 +54,38 @@
         }
     };
 
-    /// start appjs functions
-    /// end appjs functions
-    app.showFileUploadName = function(itemViewName) {
-        $('.' + itemViewName).off('change', 'input[type=\'file\']').on('change', 'input[type=\'file\']', function(event) {
-            var target = $(event.target),
-                inputValue = target.val(),
-                fileName = inputValue.substring(inputValue.lastIndexOf('\\') + 1, inputValue.length);
+    app.onShowMore = function() {
+        var navigation_show_more_view = $("#navigation-show-more-view");
 
-            $('#' + target.attr('id') + 'Name').text(fileName);
+        navigation_show_more_view.find("ul").html($("#navigation-container-more").html());
+
+        navigation_show_more_view.find("ul a").each(function(index) {
+            var icon = '<span class="km-icon km-' + $(this).data('icon') + '"></span>',
+                text = '<span class="km-text">' + $(this).text() + '</span>';
+
+            $(this).html(icon + text).addClass('km-listview-link').attr('data-role', 'listview-link').wrap("<li></li>");
         });
 
+        $("#more-view-back").off("click").on("click", function() {
+            $("#navigation-show-more-view").hide();
+        })
     };
 
-    app.clearFormDomData = function(formType) {
-        $.each($('.' + formType).find('input:not([data-bind]), textarea:not([data-bind])'), function(key, value) {
-            var domEl = $(value),
-                inputType = domEl.attr('type');
+    app.afterShowMore = function() {
+        var navigation_show_more_view = $("#navigation-show-more-view");
 
-            if (domEl.val().length) {
-
-                if (inputType === 'file') {
-                    $('#' + domEl.attr('id') + 'Name').text('');
-                }
-
-                domEl.val('');
-            }
+        navigation_show_more_view.find("li").off('click touchend').on('click touchend', function() {
+            navigation_show_more_view.hide();
+            $('.km-tabstrip .km-state-active').removeClass('km-state-active');
         });
     };
 
-    /// start kendo binders
-    kendo.data.binders.widget.buttonText = kendo.data.Binder.extend({
-        init: function(widget, bindings, options) {
-            kendo.data.Binder.fn.init.call(this, widget.element[0], bindings, options);
-        },
-        refresh: function() {
-            var that = this,
-                value = that.bindings["buttonText"].get();
-
-            $(that.element).text(value);
-        }
-    });
-    /// end kendo binders
+    app.clickMore = function(e) {
+        app.onShowMore();
+        $("#navigation-show-more-view").show();
+        app.afterShowMore();
+    };
 }());
-
-/// start app modules
-(function localization(app) {
-    var localization = app.localization = kendo.observable({
-            cultures: app.localization.cultures,
-            defaultCulture: app.localization.defaultCulture,
-            currentCulture: '',
-            strings: {},
-            viewsNames: [],
-            registerView: function(viewName) {
-                app[viewName].set('strings', getStrings() || {});
-
-                this.viewsNames.push(viewName);
-            }
-        }),
-        i, culture, cultures = localization.cultures,
-        getStrings = function() {
-            var code = localization.get('currentCulture'),
-                strings = localization.get('strings')[code];
-
-            return strings;
-        },
-        updateStrings = function() {
-            var i, viewName, viewsNames,
-                strings = getStrings();
-
-            if (strings) {
-                viewsNames = localization.get('viewsNames');
-
-                for (i = 0; i < viewsNames.length; i++) {
-                    viewName = viewsNames[i];
-
-                    app[viewName].set('strings', strings);
-                }
-
-                app.navigation.viewModel.set('strings', strings);
-                app.showMore.viewModel.set('strings', strings);
-            }
-        },
-        loadCulture = function(code) {
-            $.getJSON('cultures/' + code + '/app.json',
-                function onLoadCultureStrings(data) {
-                    localization.strings.set(code, data);
-                });
-        };
-
-    localization.bind('change', function onLanguageChange(e) {
-        if (e.field === 'currentCulture') {
-            var code = e.sender.get('currentCulture');
-
-            updateStrings();
-        } else if (e.field.startsWith('strings')) {
-            updateStrings();
-        } else if (e.field === 'cultures' && e.action === 'add') {
-            loadCulture(e.items[0].code);
-        }
-    });
-
-    for (i = 0; i < cultures.length; i++) {
-        loadCulture(cultures[i].code);
-    }
-
-    localization.set('currentCulture', localization.defaultCulture);
-})(window.app);
-/// end app modules
 
 // START_CUSTOM_CODE_kendoUiMobileApp
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes

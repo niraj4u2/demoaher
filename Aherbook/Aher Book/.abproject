@@ -1,0 +1,44 @@
+{
+  "ProjectName": "Aher Book",
+  "ProjectGuid": "7af71441-6be4-4e29-8634-93c089edc0b6",
+  "projectVersion": 1,
+  "AppIdentifier": "com.webappmate.aherbook",
+  "DisplayName": "Aher Book",
+  "Author": "",
+  "Description": "Aher Book",
+  "BundleVersion": "1.0",
+  "AndroidVersionCode": "1",
+  "iOSDeviceFamily": [
+    "1",
+    "2"
+  ],
+  "iOSBackgroundMode": [],
+  "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+  "FrameworkVersion": "4.0.0",
+  "AndroidPermissions": [
+    "android.permission.INTERNET"
+  ],
+  "DeviceOrientations": [
+    "Portrait"
+  ],
+  "AndroidHardwareAcceleration": "true",
+  "iOSStatusBarStyle": "Default",
+  "Framework": "Cordova",
+  "WP8TileTitle": "",
+  "WP8Publisher": "",
+  "WP8Capabilities": [
+    "ID_CAP_NETWORKING",
+    "ID_CAP_WEBBROWSERCOMPONENT"
+  ],
+  "WP8Requirements": [],
+  "WP8PublisherID": "{49d0ebd9-90d5-431e-9c7e-87b747672705}",
+  "WP8ProductID": "{03a94fe1-dee1-4fb4-81ea-b96f56b0ad18}",
+  "WPSdk": "8.0",
+  "WP8PackageIdentityName": "1234Telerik.AherBook",
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ]
+}
