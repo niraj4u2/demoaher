@@ -12,7 +12,7 @@ $(function(){
 	var localAherbook = {
 		init: function () {
 			//localAherbook.emptyTables('vendor_advt'); 
-			app.initDatabase();
+			this.initDatabase();
 			// Button and link actions
 			//this.dropTables();
 			 $('#clear').on('click', function(){ 
